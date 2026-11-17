@@ -32,7 +32,7 @@ async function loadHomepage(){
  $('ai-empty').hidden=content.aiResults.length>0;
  for(const [index,item] of content.aiResults.entries()){
  if(item.hexagonUrl){
-   const paper=link('Hexagon',item.hexagonUrl);
+   const paper=link('Hexagon: '+item.hexagonUrl.split('/').pop(),item.hexagonUrl);
    if(paper){
      const entry=el('article','','hexagon-result');
      const heading=el('h4','','hexagon-result-heading');
