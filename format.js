@@ -4,10 +4,18 @@ window.textFormat={
   target.replaceChildren();
   function append(parent,text,depth=0){
    if(depth>8){parent.append(document.createTextNode(text));return;}
-   const pattern=/\*\*([\s\S]+?)\*\*|_([^_\n]+?)_|\[large\]([\s\S]+?)\[\/large\]/g;
+   const pattern=/\*\*([\s\S]+?)\*\*|_([^_\n]+?)_|\[large\]([\s\S]+?)\[\/large\]|\[([^\]\n]+)\]\((https?:\/\/[^\s)]+)\)/g;
    let start=0;
    for(const match of text.matchAll(pattern)){
     parent.append(document.createTextNode(text.slice(start,match.index)));
+    if(match[4]!==undefined){
+     const anchor=document.createElement('a');
+     anchor.href=match[5];
+     anchor.textContent=match[4];
+     parent.append(anchor);
+     start=match.index+match[0].length;
+     continue;
+    }
     const node=document.createElement(match[1]!==undefined?'strong':match[2]!==undefined?'em':'span');
     if(match[3]!==undefined)node.className='text-large';
     append(node,match[1]??match[2]??match[3],depth+1);parent.append(node);start=match.index+match[0].length;
