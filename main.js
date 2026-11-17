@@ -40,6 +40,7 @@ async function loadHomepage(){
      const resources=el('p','','hexagon-result-link');
      resources.append(paper);
      entry.append(heading,resources);
+     if(item.note)entry.append(rich('p','**Note:** '+item.note,'hexagon-result-note'));
      $('ai-list').append(entry);
      continue;
    }
