@@ -18,3 +18,5 @@ nav a,nav a span,nav a[aria-current],.notice .explanation-link{color:#2864b4}nav
 #ai-about-body strong,#ai-about-body b{color:#2864b4}
 
 
+
+.hexagon-result{border-block:1px solid var(--line);padding:20px 0 24px}.hexagon-result-heading{display:flex;gap:16px;font:inherit;margin:0 0 10px}.hexagon-result-heading .entry-title{margin:0}.hexagon-result-link{margin:0 0 0 32px}

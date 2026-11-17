@@ -32,8 +32,17 @@ async function loadHomepage(){
  $('ai-empty').hidden=content.aiResults.length>0;
  for(const [index,item] of content.aiResults.entries()){
  if(item.hexagonUrl){
-   const paper=link(item.title,item.hexagonUrl);
-   if(paper){$('ai-list').append(paper);continue;}
+   const paper=link('Hexagon',item.hexagonUrl);
+   if(paper){
+     const entry=el('article','','hexagon-result');
+     const heading=el('h4','','hexagon-result-heading');
+     heading.append(el('span',String(index+1).padStart(2,'0'),'result-number'),el('span',item.title,'entry-title'));
+     const resources=el('p','','hexagon-result-link');
+     resources.append(paper);
+     entry.append(heading,resources);
+     $('ai-list').append(entry);
+     continue;
+   }
  }
  const details=el('details'),summary=el('summary');summary.append(el('span',String(index+1).padStart(2,'0'),'result-number'),el('span',item.title,'entry-title'));details.append(summary);
  const body=el('div','','result-body');
