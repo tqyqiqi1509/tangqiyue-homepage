@@ -20,3 +20,5 @@ nav a,nav a span,nav a[aria-current],.notice .explanation-link{color:#2864b4}nav
 
 
 .hexagon-result{border-block:1px solid var(--line);padding:20px 0 24px}.hexagon-result-heading{display:flex;gap:16px;font:inherit;margin:0 0 10px}.hexagon-result-heading .entry-title{margin:0}.hexagon-result-link{margin:0 0 0 32px}
+
+.text-highlight{color:#8b3d22;font-weight:600}
