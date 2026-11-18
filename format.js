@@ -4,7 +4,7 @@ window.textFormat={
   target.replaceChildren();
   function append(parent,text,depth=0){
    if(depth>8){parent.append(document.createTextNode(text));return;}
-   const pattern=/\*\*([\s\S]+?)\*\*|_([^_\n]+?)_|\[large\]([\s\S]+?)\[\/large\]|\[([^\]\n]+)\]\((https?:\/\/[^\s)]+)\)|\[highlight\]([\s\S]+?)\[\/highlight\]/g;
+   const pattern=/\*\*([\s\S]+?)\*\*|_([^_\n]+?)_|\[large\]([\s\S]+?)\[\/large\]|\[([^\]\n]+)\]\((https?:\/\/[^\s)]+)\)|\[highlight\]([\s\S]+?)\[\/highlight\]|\[blue\]([\s\S]+?)\[\/blue\]/g;
    let start=0;
    for(const match of text.matchAll(pattern)){
     parent.append(document.createTextNode(text.slice(start,match.index)));
@@ -19,7 +19,8 @@ window.textFormat={
     const node=document.createElement(match[1]!==undefined?'strong':match[2]!==undefined?'em':'span');
     if(match[3]!==undefined)node.className='text-large';
     if(match[6]!==undefined)node.className='text-highlight';
-    append(node,match[1]??match[2]??match[3]??match[6],depth+1);parent.append(node);start=match.index+match[0].length;
+    if(match[7]!==undefined)node.className='text-blue';
+    append(node,match[1]??match[2]??match[3]??match[6]??match[7],depth+1);parent.append(node);start=match.index+match[0].length;
    }
    parent.append(document.createTextNode(text.slice(start)));
   }
