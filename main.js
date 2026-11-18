@@ -41,6 +41,7 @@ async function loadHomepage(){
      resources.append(paper);
      entry.append(heading,resources);
      if(item.note)entry.append(rich('p','**Note:** '+item.note,'hexagon-result-note'));
+     if(item.verification)entry.append(rich('p','**Verification:** '+item.verification,'hexagon-result-note'));
      $('ai-list').append(entry);
      continue;
    }
